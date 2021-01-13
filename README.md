@@ -24,7 +24,7 @@ docker run --name ldap-service --hostname ldap-service --env LDAP_ORGANISATION="
 ```
 
 **Create the OU user under domain:**
-Create the file "create_ou_users.ldif" with the following content:  
+<p>Create the file "create_ou_users.ldif" with the following content:  </p>
 
 ```  
 dn: ou=Users,dc=techinterview,dc=com
@@ -37,6 +37,33 @@ ou: Users
 
 **The following command will create a OU(organizationalUnit) to hold your users:**
 ldapmodify -h localhost -p 389 -w '123456' -D 'cn=admin,dc=techinterview,dc=com'  -f  create_ou_users.ldif
+
+### Administrate your ldap server
+
+To manage your LDAP server, I recommend this image:
+
+```
+osixia/phpldapadmin
+```
+
+Run this image:
+
+```
+docker run --name phpldapadmin-service --hostname phpldapadmin-service -p 6443:443 --link ldap-service:localhost --env PHPLDAPADMIN_LDAP_HOSTS=localhost --detach osixia/phpldapadmin:0.9.0
+```
+
+URL:
+
+```
+https://localhost:6443/
+```
+
+Authenticate to server localhost:
+
+```
+Login DN: cn=admin,dc=techinterview,dc=com
+Password: 123456
+```
 
 
 ## Run LDAP REST API
