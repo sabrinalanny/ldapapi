@@ -10,7 +10,7 @@ For building and running the application you need:
 - [Maven 4](https://maven.apache.org)
 
 
-This application have at two services (**OPENLDAP Server** and **User management API**)
+This application has at two services (**OPENLDAP Server** and **User management API**)
 
 
 In order to follow these steps, you'll need to have [Docker](https://www.docker.com/) installed.
